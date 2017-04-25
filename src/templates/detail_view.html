@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+<!-- You are here: /detail_view.html -->
+
+{% block content %}
+<br />
+<div class="container">
+  <!-- START: Photo Section -->
+  <div class="col-sm-8">
+    <img class="img-responsive" src="{{ product.media.url }}" alt="{{ product.title }}" />
+  </div>
+  <!-- END: Photo Section -->
+
+  <!-- START: Product Details -->
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>{{ product.brand }}</h3>
+        <h1> {{ product.title }} </h1>
+      </div>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <p>Size: {{ product.size }}</p>
+          <h4>Price: {{ product.price }}</h4>
+          <p>Retail Price: {{ product.msrp }}</p>
+          <a class="btn btn-primary btn-lg">Add to Bag</a>
+        </li>
+        <li class="list-group-item">
+          <h4>Condition</h4>
+          <p>With Retail Tags? {{ product.conditionTags }}</p>
+          <p>Signs of Wear? {{ product.conditionWear }}</p>
+        </li>
+        <li class="list-group-item">
+          <h4>Description</h4>
+          <p>{{ product.style }}</p>
+          <p>{{ product.description }}</p>
+          <a class="btn btn-default">Request More Information</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <!-- END: Product Details -->
+</div>
+
+{% endblock content %}

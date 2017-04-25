@@ -1,0 +1,20 @@
+<table class="table">
+<thead>
+  <tr>
+    <th>Date/Time</th>
+    <th>Product</th>
+    <th>Purchased by User</th>
+    <th>Price</th>
+  </tr>
+</thead>
+<tbody>
+{% for trans in transaction_list %}
+  <tr>
+    <td>{{ trans.timestamp|timesince }} ago</td>
+    <td>{{ trans.product }}</td>
+    <td>{{ trans.user }}</td>
+    <td>{{ trans.price }}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>

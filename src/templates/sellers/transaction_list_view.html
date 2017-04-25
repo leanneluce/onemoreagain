@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "dashboard/seller_header.html" %}
+<!-- You are here: /sellers/transaction_list_view.html -->
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Sold Items</h1>
+  </div>
+
+<div class="row">
+
+  <div id="list-display">
+    {% include "sellers/transaction_list.html" with transaction_list=object_list %}
+  </div>
+
+</div><!-- end row -->
+
+</div><!-- end container -->
+{% endblock content %}

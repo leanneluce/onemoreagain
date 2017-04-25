@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "dashboard/seller_header.html" %}
+<!-- you are here: sellers/dashboard.html -->
+
+<div class="container" id="seller-dashboard">
+  <div class="page-header">
+    <h1>{{ title }}</h1>
+
+  </div>
+
+  {% if apply_form %}
+    <p>PLEASE READ THIS TERMS OF USE AGREEMENT (“AGREEMENT” OR “TERMS OF USE”)
+      CAREFULLY BEFORE USING THE WEBSITE, MOBILE APPLICATIONS AND SERVICES OFFERED
+      BY CONTINUA APPAREL CORPORATION OR ANY OF ITS SUBSIDIARIES (“ONE MORE AGAIN” OR THE “COMPANY”).
+      THIS AGREEMENT SETS FORTH THE LEGALLY BINDING TERMS AND CONDITIONS FOR YOUR USE OF THE WEBSITE
+      AT WWW.ONEMOREAGAIN.COM (“WEBSITE”), MOBILE APPLICATIONS, AND SERVICES PROVIDED BY ONE MORE AGAIN
+      (COLLECTIVELY, “SERVICES”).</p>
+
+    <p><strong><a href="#">Read our Terms of Agreement</a></strong></p>
+
+    <form method='POST' action=''> {% csrf_token %}
+      {{ apply_form.as_p }}
+      <br/>
+      <input class="btn btn-default" type='submit'/>
+    </form>
+  {% endif %}
+
+  {% if products %}
+    <div class="page-header">
+      <a class="btn btn-default pull-right" href="{% url "sellers:product_list" %}">View All </a>
+      <h2>Active Listings</h2>
+    </div>
+      {% include "products/product_result.html" with product_list=products %}
+  {% endif %}
+
+
+  {% if transactions %}
+  <div class="page-header">
+    <a class="btn btn-default pull-right" href="{% url "sellers:transactions" %}">View All</a>
+    <h2>Sales</h2>
+  </div>
+  <h3>Today's Sales</h3>
+    {% include "sellers/transaction_list.html" with transaction_list=transactions_today %}
+    <div class="alert alert-success" role="alert"><h4>Today's Sales Total: ${{ today_sales }}</h4></div>
+
+  <h3>Recent Sales</h3>
+    {% include "sellers/transaction_list.html" with transaction_list=transactions %}
+    <div class="alert alert-success" role="alert"><h4>All Sales Total: ${{ total_sales }}<h4></div>
+  <br /><br />
+  {% endif %}
+
+</div>
+{% endblock %}

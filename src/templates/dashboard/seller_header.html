@@ -1,0 +1,26 @@
+<!-- you are here: dashboard/seller_header.html -->
+<nav class="navbar yamm navbar-seller" id="main-nav"  role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">MENU</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-collapse-nav">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url "sellers:dashboard" %}">Dashboard</a></li>
+        <li><a href="{% url "sellers:product_list" %}">Active Listings</a></li>
+        <li><a href="{% url "sellers:transactions" %}">Sales</a></li>
+        <li><a href="{% url "library" %}">Purchases</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url "sellers:product_create" %}">Add a Listing &nbsp;<i class="fa fa-plus-square-o" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav

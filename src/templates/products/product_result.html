@@ -1,0 +1,45 @@
+<!-- You are here: products/product_result.html -->
+{% load get_thumbnail %}
+
+{% for instance in product_list %}
+  {% if forloop.first %}<div class="row">{% endif %}
+
+{% if "seller" in request.path %}
+<div class="col-sm-3" id="product-instance">
+{% else %}
+<div class="col-sm-4" id="product-instance">
+{% endif %}
+  <a href="{{ instance.get_absolute_url }}" >
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {% if instance.transaction_set.count > 0 %}
+        <span class="label label-default">Sold out</span>
+        {% endif %}
+        <!-- slice to show only one thumbnail in the set -->
+        {% if instance|get_thumbnail:"sd" %}
+          {% if instance.transaction_set.count > 0 %}
+          <img class="img-responsive sold-img" src="{{ instance|get_thumbnail:"sd" }}" alt="{{ instance }}" />
+          {% else %}
+          <img class="img-responsive" src="{{ instance|get_thumbnail:"sd" }}" alt="{{ instance }}" />
+          {% endif %}
+        {% endif %}
+      </div>
+      <div class="panel-body">
+        <h5>{{ instance.brand }}</h5>
+        <p>{{ instance }}</p>
+        <p class="listing-price">{{ instance.get_html_price|safe }}</p>
+        <p>Size: {{ instance.size }}</p>
+      </div>
+    </div>
+  </a>
+</div>
+{% if "seller" in request.path %}
+{% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+{% if forloop.last %}</div>{% endif %}
+{% else %}
+  {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+  {% if forloop.last %}</div>{% endif %}
+{% endif %}
+  {% empty %}
+      <p>No products yet!  Check back soon!</p>
+  {% endfor %}

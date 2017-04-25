@@ -1,0 +1,6 @@
+<!-- You are here: /form_include.html -->
+<form method="POST" action="">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="btn btn-default" type='submit' value='{{ submit_btn }}' />
+</form>

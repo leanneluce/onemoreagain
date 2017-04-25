@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+<!-- You are here: /dashboard/view.html -->
+{% block content %}
+<section id="home-main-hero">
+  <div class="container">
+
+    <div class="home-main-img col-md-7 col-md-offset-1 col-sm-5 col-sm-offset-2 col-xs-12">
+      <!-- background image set in css for homepage hero -->
+    </div>
+
+    <div class="col-md-2 position-absolute" id="home-discount">
+      <div class="well success text-center">
+        <h4> Save up to </h4>
+        <h1> 80% Off </h1>
+        <h4> on Dancewear!</h4>
+        <hr />
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="container-fluid">
+        <br /><br />
+        <h2>Buy &amp; Sell Dancewear</h2>
+        <h3>Sell your gently used costumes, dance shoes, and more</h3>
+        <br />
+        <a class="btn btn-default btn-lg" href="{% url "products:list" %}">Shop Now</a>
+        <br />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="container">
+  <section id="home-recommended">
+    <div class="page-header">
+      <h2 class="text-center"> What's Trending </h2>
+    </div>
+
+    <div class="row" id="home-blog-post">
+      {% for post in posts %}
+        {% include "posts/post_result.html"  %}
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h2 class="text-center">Top Picks for {{ user }}</h2>
+        </div>
+      </div>
+    </div>
+
+  <div class="dashboard-tags">
+    <p>We noticed you were looking at:
+      <ul class="list-inline">
+        {% for tag in top_tags %}
+          <li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+    </p>
+  </div>
+
+    {% include "products/product_result.html" with product_list=products  %}
+  </section> <!-- end: home-recommended -->
+
+
+</div>
+
+{% endblock content %}

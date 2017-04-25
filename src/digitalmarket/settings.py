@@ -37,6 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'analytics',
+    'billing',
+    'posts',
+    'products',
+    'sellers',
+    'tags',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'digitalmarket.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,10 +80,21 @@ WSGI_APPLICATION = 'digitalmarket.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'digitalmarket',
+        'USER': 'dmadmin',
+        'PASSWORD': 'passwordhere',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -100,3 +117,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# team manages
+STATICFILES_DIRS = (
+    #dir
+    os.path.join(BASE_DIR, "static"),
+)
+
+# team doesn't manage uploads
+# change to CDN or AWS S3 Bucket etc
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "staticfiles")
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media")
+
+PROTECTED_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "protected")

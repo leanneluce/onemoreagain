@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if "seller" in request.path %}
+  {% include "dashboard/seller_header.html" %}
+{% endif %}
+<!-- You are here: /create_view.html -->
+
+<div class="container">
+
+  <div class="page-header">
+    <h1> List an Item </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      {% include "form_include.html" with form=form submit_btn="Create Product" %}
+      <br />
+    </div>
+  </div>
+
+</div>
+{% endblock content %}

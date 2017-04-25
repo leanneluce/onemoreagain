@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- you are here: posts/detail_view.html -->
+<div class="img-housing-blog" style="background-image:linear-gradient(to left, rgba(0,0,0,.5), rgba(0,0,0,.5)), url({{ post.image.url }});">
+  <h1 class="blog-post-title text-center">{{ post.title }}</h1>
+</div>
+
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h4>{{ post.pub_date_pretty }}</h4>
+      <h3> By {{ post.author }}</h3>
+      <p>{{ post.body|linebreaks }}</p>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      {% include "products/product_result.html" with product_list=products %}
+      <p>break</p>
+
+      {% for tag in tags %}
+          <li><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></li>
+      {% endfor %}
+
+    </div>
+  </div><!-- end row -->
+  <br /><br />
+</div><!-- end container -->
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- you are here: posts/list_view.html -->
+<div class="container">
+
+  <div class="page-header">
+    <h1>Blog Posts List View</h1>
+  </div>
+
+  {% for post in posts %}
+    {% include "posts/post_result.html"  %}
+  {% endfor %}
+
+</div><!-- end container -->
+{% endblock content %}
